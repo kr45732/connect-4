@@ -12,6 +12,11 @@ class connectFour:
         self.board = []
         self.create_board()
 
+    def clear(self):
+        """Clear the shell/output"""
+        clr = os.system("clear")
+        clr
+
     def create_board(self):
         for x in range(self.area):
             self.board.append(" ")
@@ -29,7 +34,10 @@ class connectFour:
 
     def print_board(self):
         for i in range(1, self.width + 1):
-            print(" ", i, " ", end="")
+            if i > 9:
+                print(" ", i, "", end="")
+            else:
+                print(" ", i, " ", end="")
         for i in range(self.area):
             if i % self.width == 0:
                 print()
@@ -38,12 +46,16 @@ class connectFour:
 
     def place_player_one(self, column):
         for i in range(column - 1, column + self.area - self.width, self.width):
-            """ # Un-docstring for animations (work in progress)
+            # Un-docstring for animations (work in progress)
             self.board[i] = Style.RESET_ALL + Fore.RED + "R" + Style.RESET_ALL
-            t.sleep(0.1)
+            if self.height > 20:
+                t.sleep(0.05)
+            else:
+                t.sleep(0.075)
+            self.clear()
             self.print_board()
             self.board[i] = " "
-            """
+
             try:
                 if self.board[i + self.width] != " ":
                     self.board[i] = Style.RESET_ALL + Fore.RED + "R" + Style.RESET_ALL
@@ -61,12 +73,16 @@ class connectFour:
 
     def place_player_two(self, column):
         for i in range(column - 1, column + self.area - self.width, self.width):
-            """ # Un-docstring for animations (work in progress)
+            # Un-docstring for animations (work in progress)
             self.board[i] = Style.RESET_ALL + Fore.YELLOW + "Y" + Style.RESET_ALL
-            t.sleep(0.1)
+            if self.height > 20:
+                t.sleep(0.05)
+            else:
+                t.sleep(0.075)
+            self.clear()
             self.print_board()
             self.board[i] = " "
-            """
+
             try:
                 if self.board[i + self.width] != " ":
                     self.board[i] = (
@@ -166,6 +182,8 @@ class connectFour:
                 counter += 1
 
     def play_game(self):
+        self.clear()
+        self.print_board()
         while True:
             print(
                 "Player one's turn! Piece color - "
@@ -175,11 +193,12 @@ class connectFour:
                 + Style.RESET_ALL
             )
             while True:
-                self.print_board()
+                
                 column = input("Choose the column number to place your piece: ")
                 if self.check_valid(column):
                     break
                 else:
+                    self.print_board()
                     print(
                         Style.RESET_ALL
                         + Fore.YELLOW
@@ -215,11 +234,12 @@ class connectFour:
                 + Style.RESET_ALL
             )
             while True:
-                self.print_board()
+
                 column = input("Choose the column number to place your piece: ")
                 if self.check_valid(column):
                     break
                 else:
+                    self.print_board()
                     print(Style.RESET_ALL)
                     print(Fore.YELLOW + "Invalid column")
                     print(Style.RESET_ALL)
