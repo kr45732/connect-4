@@ -17,6 +17,7 @@ while True:
         width = int(input("Input the width of the board: "))
         height = int(input("Input the height of the board: "))
         print("\nStarting game!")
+        
         break
     elif start_menu == "3":
         print("Rules:")
