@@ -34,10 +34,6 @@ Each player will drop in one disc piece at a time.\n"
 
 
 game = connectFour(height, width)
+game.play_game()
 
-while True:
-    game.play_game()
-    play_again = input("Play again?('y' or 'n'): ")
-    if play_again.lower() != "y":
-        break
-        
+print("Thanks for playing!")
